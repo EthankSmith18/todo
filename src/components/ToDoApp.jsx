@@ -13,42 +13,40 @@ import ToDoForm from './ToDoForm';
 import ToDoList from './ToDoList';
 
 function ToDoApp() {
-    const [todos, setTodos] = useState([]);
-// Adds identifier to new to do task, assigns new task to task, is complete is always false at creation
-    const addTodo = (newTask) => {
-        const newTodo = {
-            id: uuidv4(),
-            task: newTask,
-            isComplete: false,
+  const [todos, setTodos] = useState([]);
+  // Adds identifier to new to do task, assigns new task to task, is complete is always false at creation
+  const addTodo = (newTask) => {
+    const newTodo = {
+      id: uuidv4(),
+      task: newTask,
+      isComplete: false,
     };
-        setTodos([
-    // spread current todos so they are not overwritten
-        ...todos,
-    // adds newTodo
-        newTodo
+    setTodos([
+      // spread current todos so they are not overwritten
+      ...todos,
+      // adds newTodo
+      newTodo,
+    ]);
+  };
+  // returns todo to map no matter what, if there is a match on the id, isComplete is toggled
+  const toggleTodo = (targetId) => {
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === targetId) {
+        todo = {
+          ...todo,
+          isComplete: !todo.isComplete,
+        };
+      }
+      return todo;
+    });
+    setTodos(updatedTodos);
+  };
 
-    ])
-    }
-// returns todo to map no matter what, if there is a match on the id, isComplete is toggled
-    const toggleTodo = (targetId) => { 
-        const updatedTodos = todos.map((todo) => {
-            if (todo.id === targetId){
-                todo = {
-                    ...todo,
-                    isComplete: !todo.isComplete,
-                };
-            }
-            return todo;
-        });
-        setTodos(updatedTodos);
-     };
-
-    // Deletes item from list
-    const deleteTodo = (targetId) => {
-        const filteredTodos = todos.filter(todo => todo.id != targetId);
-        setTodos(filteredTodos);
-    };
-
+  // Deletes item from list
+  const deleteTodo = (targetId) => {
+    const filteredTodos = todos.filter((todo) => todo.id != targetId);
+    setTodos(filteredTodos);
+  };
 
   return (
     <Container sx={{ marginTop: 20 }}>
