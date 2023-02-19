@@ -24,7 +24,10 @@ function ToDoItem({ todo, toggleTodo, deleteTodo }) {
           withArrow
           color="green"
           sx={{ fontSize: 14 }}>
-          <ThemeIcon color="green" sx={{ cursor: 'pointer' }} onClick={() => deleteTodo(todo.id)}>
+          <ThemeIcon
+            color="green"
+            sx={{ cursor: 'pointer' }}
+            onClick={() => deleteTodo(todo.id)}>
             <IconTrash size={18} />
           </ThemeIcon>
         </Tooltip>
